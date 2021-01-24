@@ -114,3 +114,4 @@ sites/*/private
 
 # OTHER
 env/
+.vscode/
