@@ -111,3 +111,6 @@ composer.phar
 sites/*/settings*.php
 sites/*/files
 sites/*/private
+
+# OTHER
+env/
