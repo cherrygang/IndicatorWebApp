@@ -115,3 +115,7 @@ sites/*/private
 # OTHER
 env/
 .vscode/
+
+# Python
+__pycache__/
+*.py[cod]
