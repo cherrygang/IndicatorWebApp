@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello, from flask vscode"
+    return render_template("homepage.html")
 
 
 @app.route("/quote")
