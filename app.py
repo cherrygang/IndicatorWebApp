@@ -7,6 +7,15 @@ app = Flask(__name__)
 def home():
     return render_template("homepage.html")
 
+@app.route("/history")
+def display_history():
+    symbol = request.args.get('symbol', default="AAPL")
+    period = request.args.get('period', default="1y")
+    interval = request.args.get('interval', default="1mo")
+    quote = yf.Ticker(symbol)
+    hist = quote.history(period=period, interval=interval)
+    data = hist.to_json()
+    return data
 
 @app.route("/quote")
 def display_quote():
