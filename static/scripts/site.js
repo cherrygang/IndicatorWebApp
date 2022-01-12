@@ -37,7 +37,12 @@ Site.prototype.GetQuote = function(){
 
 Site.prototype.SubmitForm = function(){
 	this.symbol = $("#symbol").val();
-	this.GetQuote();
+	window.location.href='/ticker?ticker=' + this.symbol
+
+
+	// this.GetQuote();
+
+
 }
 
 Site.prototype.LoadChart = function(quote){

@@ -9,6 +9,9 @@ import plotly.graph_objects as go
 import plotly.utils as putil
 import datetime
 
+# debugging stuff. Delete this later if no longer needed
+from pprint import pprint
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -37,11 +40,13 @@ def display_everything():
     # data = hist.to_json()
     tick = functions.Ticker(symbol, '12mo', '1d')
     df = tick.getData()
+
+    dftable = df.to_html()
     df.reset_index()
     # data1['newdate'] = datetime.datetime.strptime(data1['date'], '%Y-%m-%d %H:%M:%S')
 
-    for index, row in df.iterrows():
-        print(row['Open'], row['Close'])
+    # for index, row in df.iterrows():
+    #     print(row['Open'], row['Close'])
 
     trace = go.Candlestick(
         x=df.index,
@@ -60,7 +65,7 @@ def display_everything():
 
     
 
-    return render_template('tickerpage.html', data = df, graphJSON=graphJSON)
+    return render_template('tickerpage.html', graphJSON=graphJSON, dftable = dftable)
 
 @app.route("/quote")
 def display_quote():
