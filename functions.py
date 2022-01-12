@@ -20,6 +20,9 @@ class Ticker:
         data['MACD'] = self.getMACD(data['Close'])
         data['9dEMA'] = self.getEMA(data['Close'], 9)
         data['20dEMA'] = self.getEMA(data['Close'], 20)
+        
+        #based off of whatever indicators we need to set signal to -1, 0, 1 [sell, hold, buy] e.g.
+        data['Signal'] = self.testingRSI(data['Close'])
 
         return data
 
@@ -41,6 +44,12 @@ class Ticker:
 
     def getEMA(self,data,time_frame):
         return data.ewm(span=time_frame,adjust=False).mean()
+
+    def testingRSI(self, data):
+        if isinstance(data, float):
+            if data > 30:
+                return 1
+        return 0
 
     def lineCross(self, line1, line2, lookback):
         #if line1 is initially lower than line 2 & cross then return True
